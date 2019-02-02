@@ -1,0 +1,19 @@
+{
+  "name": "react-review",
+  "version": "1.0.0",
+  "description": "A review of React with a YouTUbe search feature",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awilliams62090/React-Review.git"
+  },
+  "author": "Alyssa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awilliams62090/React-Review/issues"
+  },
+  "homepage": "https://github.com/awilliams62090/React-Review#readme"
+}
