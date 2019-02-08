@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const apiKey="AIzaSyAmxSogQpkB3YdNogyOAU6k6iJ5RnpquUQ";
+//You will need to add your own API key info in here for the app to work
+const apiKey="PUT YOUR API KEY HERE";
 
 export default {
     searchVideos : function (term) {

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
+import _ from "lodash";
 import API from "./utils/API";
 import SearchBar from "./components/SearchBar";
 import VideoDetail from "./components/VideoDetail";
 import {VideoList, VideoListItem} from "./components/VideoList";
+
+
 
 class App extends Component {
 
@@ -12,6 +15,7 @@ class App extends Component {
         selectedVideo: null
     }
 
+    //Setting up the page for the app
     componentDidMount() {
         this.searchYouTube("kittens in buckets");
     }
@@ -22,13 +26,19 @@ class App extends Component {
             .then(res => this.setState({videos: res.data.items, selectedVideo: res.data.items[0]}))
             .catch(err => console.log(err))
     }
+    
+    selectVideo = (video) =>{
+        this.setState({selectedVideo: video});
+    } 
+
+    throttledSearch = _.debounce(this.searchYouTube, 900)
 
     render() {
         return (
             <Container>
                 <Row>
                     <Col>
-                        <SearchBar/>
+                        <SearchBar searchYouTube={this.throttledSearch}/>
                     </Col>
                 </Row>
                 <Row>
@@ -37,8 +47,13 @@ class App extends Component {
                     </Col>
                     <Col md='3'>
                         <VideoList>
-                            <VideoListItem/>
-                            <VideoListItem/>
+                           {this.state.videos.map(video =>(
+                               <VideoListItem 
+                               video= {video} 
+                               key={video.id.videoId || video.id.playlistId} 
+                               selectedVideo={this.state.selectedVideo}
+                               selectVideo={this.selectVideo}/>
+                           ))}
                         </VideoList>
                     </Col>
 
